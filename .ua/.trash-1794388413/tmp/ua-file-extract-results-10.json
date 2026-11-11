@@ -1,0 +1,154 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 3,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 3,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "tests/12_sse/03_sse_data.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 59,
+      "nonEmptyLines": 45,
+      "functions": [
+        {
+          "name": "long_task",
+          "startLine": 14,
+          "endLine": 26,
+          "params": [
+            "session_id"
+          ]
+        },
+        {
+          "name": "submit_task",
+          "startLine": 31,
+          "endLine": 33,
+          "params": [
+            "session_id",
+            "background_tasks"
+          ]
+        },
+        {
+          "name": "stream_result",
+          "startLine": 38,
+          "endLine": 53,
+          "params": [
+            "session_id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "long_task",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "submit_task",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "stream_result",
+          "line": 37,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "long_task",
+          "callee": "asyncio.Queue",
+          "lineNumber": 16
+        },
+        {
+          "caller": "long_task",
+          "callee": "range",
+          "lineNumber": 20
+        },
+        {
+          "caller": "long_task",
+          "callee": "queue.put",
+          "lineNumber": 22
+        },
+        {
+          "caller": "long_task",
+          "callee": "asyncio.sleep",
+          "lineNumber": 23
+        },
+        {
+          "caller": "long_task",
+          "callee": "queue.put",
+          "lineNumber": 26
+        },
+        {
+          "caller": "submit_task",
+          "callee": "background_tasks.add_task",
+          "lineNumber": 32
+        },
+        {
+          "caller": "event_generator",
+          "callee": "asyncio.sleep",
+          "lineNumber": 42
+        },
+        {
+          "caller": "event_generator",
+          "callee": "queue.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "stream_result",
+          "callee": "StreamingResponse",
+          "lineNumber": 53
+        },
+        {
+          "caller": "stream_result",
+          "callee": "event_generator",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/12_sse/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "tests/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

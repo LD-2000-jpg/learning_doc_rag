@@ -1,0 +1,1326 @@
+{
+  "name": "掌柜智库",
+  "description": "基于 LangGraph 的企业级 RAG 知识库系统，支持文档导入、向量检索和智能问答",
+  "languages": [
+    "html",
+    "markdown",
+    "prompt",
+    "python",
+    "toml",
+    "txt"
+  ],
+  "frameworks": [
+    "FastAPI",
+    "LangChain",
+    "LangGraph",
+    "Milvus",
+    "MongoDB",
+    "MinIO",
+    "PyTorch"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "language": "config",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "app/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/http/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/http/import_server.py",
+      "language": "python",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/http/query_server.py",
+      "language": "python",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/schema/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/schema/import_schema.py",
+      "language": "python",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/api/schema/query_schema.py",
+      "language": "python",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/config/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/config/providers.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/milvus/VectorStore.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/milvus/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/minio/ObjectStore.py",
+      "language": "python",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/minio/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/model/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/infra/model/model_providers.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/main_graph.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_bge_embedding.py",
+      "language": "python",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_document_split.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_entry.py",
+      "language": "python",
+      "sizeLines": 52,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_import_milvus.py",
+      "language": "python",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_item_name_recognition.py",
+      "language": "python",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_md_img.py",
+      "language": "python",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/nodes/node_pdf_to_md.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/import_/agent/state.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/main_graph.py",
+      "language": "python",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_answer_output.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_item_name_confirm.py",
+      "language": "python",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_rerank.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_rrf.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_search_embedding.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_search_embedding_hyde.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/nodes/node_web_search_mcp.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/process/query/agent/state.py",
+      "language": "python",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/config.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/embedding_service.py",
+      "language": "python",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/enrich_markdown_images.py",
+      "language": "python",
+      "sizeLines": 242,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/entry_service.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/index_service.py",
+      "language": "python",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/item_name_service.py",
+      "language": "python",
+      "sizeLines": 194,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/pdf_parse_service.py",
+      "language": "python",
+      "sizeLines": 251,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/import_/split_service.py",
+      "language": "python",
+      "sizeLines": 283,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/answer_service.py",
+      "language": "python",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/config.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/embedding_search_service.py",
+      "language": "python",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/hyde_search_service.py",
+      "language": "python",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/item_name_confirm_service.py",
+      "language": "python",
+      "sizeLines": 238,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/rerank_service.py",
+      "language": "python",
+      "sizeLines": 163,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/rrf_service.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag/query/web_search_service.py",
+      "language": "python",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag_eval/README.md",
+      "language": "markdown",
+      "sizeLines": 206,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "app/rag_eval/__init__.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag_eval/dataset.py",
+      "language": "python",
+      "sizeLines": 290,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag_eval/metrics.py",
+      "language": "python",
+      "sizeLines": 232,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag_eval/runner.py",
+      "language": "python",
+      "sizeLines": 435,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/rag_eval/tester.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/htmls/chat.html",
+      "language": "html",
+      "sizeLines": 897,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/resources/htmls/import.html",
+      "language": "html",
+      "sizeLines": 351,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "app/resources/prompts/answer_out.prompt",
+      "language": "prompt",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/hyde_prompt.prompt",
+      "language": "prompt",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/image_summary.prompt",
+      "language": "prompt",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/item_name_recognition.prompt",
+      "language": "prompt",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/product_recognition_system.prompt",
+      "language": "prompt",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/rerank_text_refine.prompt",
+      "language": "prompt",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/resources/prompts/rewritten_query_and_itemnames.prompt",
+      "language": "prompt",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/clients/__init__.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/clients/milvus_utils.py",
+      "language": "python",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/clients/minio_utils.py",
+      "language": "python",
+      "sizeLines": 97,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/clients/mongo_history_utils.py",
+      "language": "python",
+      "sizeLines": 239,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/__init__.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/bailian_mcp_config.py",
+      "language": "python",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/common.py",
+      "language": "python",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/embedding_config.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/lm_config.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/milvus_config.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/mineru_config.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/minio_config.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/reranker_config.py",
+      "language": "python",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/config/settings_config.py",
+      "language": "python",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/model/__init__.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/model/embedding_utils.py",
+      "language": "python",
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/model/lm_utils.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/model/reranker_utils.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/runtime/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/runtime/load_prompt.py",
+      "language": "python",
+      "sizeLines": 42,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/runtime/logger.py",
+      "language": "python",
+      "sizeLines": 153,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/tool/__init__.py",
+      "language": "python",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/tool/download_bgem3.py",
+      "language": "python",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/tool/download_reranker.py",
+      "language": "python",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/__init__.py",
+      "language": "python",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/escape_milvus_string_utils.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/format_utils.py",
+      "language": "python",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/normalize_sparse_vector.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/path_util.py",
+      "language": "python",
+      "sizeLines": 49,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/rate_limit_utils.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/sse_utils.py",
+      "language": "python",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "app/shared/utils/task_utils.py",
+      "language": "python",
+      "sizeLines": 166,
+      "fileCategory": "code"
+    },
+    {
+      "path": "notes/day06_掌柜智库_项目介绍和搭建.txt",
+      "language": "txt",
+      "sizeLines": 295,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day07_掌柜智库_导入架构和pdf处理.txt",
+      "language": "txt",
+      "sizeLines": 381,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+      "language": "txt",
+      "sizeLines": 565,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day09_掌柜智库_继续图片处理节点.txt",
+      "language": "txt",
+      "sizeLines": 149,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+      "language": "txt",
+      "sizeLines": 281,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day11_掌柜智库_数据入口和导入web模块.txt",
+      "language": "txt",
+      "sizeLines": 219,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+      "language": "txt",
+      "sizeLines": 146,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+      "language": "txt",
+      "sizeLines": 206,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day14_掌柜智库_web实现和意图识别.txt",
+      "language": "txt",
+      "sizeLines": 496,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day15_掌柜智库_意图识别和多路检索.txt",
+      "language": "txt",
+      "sizeLines": 381,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notes/day16_掌柜智库_数据重排和结果输出.txt",
+      "language": "txt",
+      "sizeLines": 176,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 42,
+      "fileCategory": "config"
+    },
+    {
+      "path": "tests/01_project_logger_output.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/02_project_load_prompt.py",
+      "language": "python",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/03_import_state_test.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/04_import_graph_test.py",
+      "language": "python",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/05_base64_byte_str.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/06_mimetype_guess.py",
+      "language": "python",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/07_reg_use_test.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/08_test_title_deal.py",
+      "language": "python",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/09_test_import_graph_invoke.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/10_fastapi/01_fast_base_use.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/10_fastapi/02_fast_async.py",
+      "language": "python",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/10_fastapi/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/11_query_graph_test.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/12_sse/01_sse_data.html",
+      "language": "html",
+      "sizeLines": 26,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "tests/12_sse/01_sse_data.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/12_sse/02_sse_data.html",
+      "language": "html",
+      "sizeLines": 32,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "tests/12_sse/02_sse_data.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/12_sse/03_sse_data.py",
+      "language": "python",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/12_sse/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_rag_eval_tester.py",
+      "language": "python",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 143,
+  "filteredByIgnore": 12,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".env.example": [],
+    "app/__init__.py": [],
+    "app/api/__init__.py": [],
+    "app/api/http/__init__.py": [],
+    "app/api/http/import_server.py": [
+      "app/api/schema/import_schema.py",
+      "app/process/import_/agent/main_graph.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/api/http/query_server.py": [
+      "app/api/schema/query_schema.py",
+      "app/process/query/agent/main_graph.py",
+      "app/process/query/agent/state.py",
+      "app/shared/clients/mongo_history_utils.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/sse_utils.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/api/schema/__init__.py": [],
+    "app/api/schema/import_schema.py": [],
+    "app/api/schema/query_schema.py": [],
+    "app/infra/__init__.py": [],
+    "app/infra/config/__init__.py": [],
+    "app/infra/config/providers.py": [
+      "app/shared/config/bailian_mcp_config.py",
+      "app/shared/config/embedding_config.py",
+      "app/shared/config/lm_config.py",
+      "app/shared/config/milvus_config.py",
+      "app/shared/config/mineru_config.py",
+      "app/shared/config/minio_config.py",
+      "app/shared/config/reranker_config.py",
+      "app/shared/config/settings_config.py"
+    ],
+    "app/infra/milvus/VectorStore.py": [
+      "app/infra/config/providers.py",
+      "app/shared/clients/milvus_utils.py"
+    ],
+    "app/infra/milvus/__init__.py": [],
+    "app/infra/minio/ObjectStore.py": [
+      "app/infra/config/providers.py",
+      "app/shared/clients/minio_utils.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/infra/minio/__init__.py": [],
+    "app/infra/model/__init__.py": [],
+    "app/infra/model/model_providers.py": [
+      "app/shared/model/embedding_utils.py",
+      "app/shared/model/lm_utils.py",
+      "app/shared/model/reranker_utils.py"
+    ],
+    "app/process/__init__.py": [],
+    "app/process/import_/__init__.py": [],
+    "app/process/import_/agent/__init__.py": [],
+    "app/process/import_/agent/main_graph.py": [
+      "app/process/import_/agent/nodes/node_bge_embedding.py",
+      "app/process/import_/agent/nodes/node_document_split.py",
+      "app/process/import_/agent/nodes/node_entry.py",
+      "app/process/import_/agent/nodes/node_import_milvus.py",
+      "app/process/import_/agent/nodes/node_item_name_recognition.py",
+      "app/process/import_/agent/nodes/node_md_img.py",
+      "app/process/import_/agent/nodes/node_pdf_to_md.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/process/import_/agent/nodes/__init__.py": [],
+    "app/process/import_/agent/nodes/node_bge_embedding.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/embedding_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_document_split.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/split_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_entry.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/entry_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_import_milvus.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/index_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_item_name_recognition.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/item_name_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_md_img.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/enrich_markdown_images.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/nodes/node_pdf_to_md.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/pdf_parse_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/import_/agent/state.py": [],
+    "app/process/query/__init__.py": [],
+    "app/process/query/agent/__init__.py": [],
+    "app/process/query/agent/main_graph.py": [
+      "app/process/query/agent/nodes/node_answer_output.py",
+      "app/process/query/agent/nodes/node_item_name_confirm.py",
+      "app/process/query/agent/nodes/node_rerank.py",
+      "app/process/query/agent/nodes/node_rrf.py",
+      "app/process/query/agent/nodes/node_search_embedding.py",
+      "app/process/query/agent/nodes/node_search_embedding_hyde.py",
+      "app/process/query/agent/nodes/node_web_search_mcp.py",
+      "app/process/query/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/process/query/agent/nodes/__init__.py": [],
+    "app/process/query/agent/nodes/node_answer_output.py": [
+      "app/rag/query/answer_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_item_name_confirm.py": [
+      "app/rag/query/item_name_confirm_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_rerank.py": [
+      "app/rag/query/rerank_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_rrf.py": [
+      "app/rag/query/rrf_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_search_embedding.py": [
+      "app/rag/query/embedding_search_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_search_embedding_hyde.py": [
+      "app/rag/query/hyde_search_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/nodes/node_web_search_mcp.py": [
+      "app/rag/query/web_search_service.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/process/query/agent/state.py": [],
+    "app/rag/__init__.py": [],
+    "app/rag/import_/__init__.py": [],
+    "app/rag/import_/config.py": [],
+    "app/rag/import_/embedding_service.py": [
+      "app/infra/model/model_providers.py",
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/import_/enrich_markdown_images.py": [
+      "app/infra/config/providers.py",
+      "app/infra/minio/ObjectStore.py",
+      "app/infra/model/model_providers.py",
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/config.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/rate_limit_utils.py"
+    ],
+    "app/rag/import_/entry_service.py": [
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/import_/index_service.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/import_/item_name_service.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/infra/model/model_providers.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/import_/pdf_parse_service.py": [
+      "app/infra/config/providers.py",
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/import_/split_service.py": [
+      "app/process/import_/agent/state.py",
+      "app/rag/import_/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/__init__.py": [],
+    "app/rag/query/answer_service.py": [
+      "app/infra/model/model_providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/clients/__init__.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py",
+      "app/shared/utils/sse_utils.py",
+      "app/shared/utils/task_utils.py"
+    ],
+    "app/rag/query/config.py": [],
+    "app/rag/query/embedding_search_service.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/infra/model/model_providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/hyde_search_service.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/infra/model/model_providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/item_name_confirm_service.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/infra/model/model_providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/clients/mongo_history_utils.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/rerank_service.py": [
+      "app/infra/model/model_providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/rrf_service.py": [
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag/query/web_search_service.py": [
+      "app/infra/config/providers.py",
+      "app/process/query/agent/state.py",
+      "app/rag/query/config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/rag_eval/README.md": [],
+    "app/rag_eval/__init__.py": [
+      "app/rag_eval/tester.py"
+    ],
+    "app/rag_eval/dataset.py": [],
+    "app/rag_eval/metrics.py": [],
+    "app/rag_eval/runner.py": [
+      "app/infra/milvus/VectorStore.py",
+      "app/process/import_/agent/nodes/node_bge_embedding.py",
+      "app/process/import_/agent/nodes/node_import_milvus.py",
+      "app/process/import_/agent/nodes/node_item_name_recognition.py",
+      "app/process/import_/agent/state.py",
+      "app/process/query/agent/nodes/node_rerank.py",
+      "app/process/query/agent/nodes/node_rrf.py",
+      "app/process/query/agent/nodes/node_search_embedding.py",
+      "app/process/query/agent/nodes/node_search_embedding_hyde.py",
+      "app/process/query/agent/state.py",
+      "app/rag_eval/dataset.py",
+      "app/rag_eval/metrics.py",
+      "app/shared/clients/__init__.py",
+      "app/shared/clients/mongo_history_utils.py",
+      "app/shared/config/embedding_config.py",
+      "app/shared/config/milvus_config.py",
+      "app/shared/config/reranker_config.py"
+    ],
+    "app/rag_eval/tester.py": [],
+    "app/resources/htmls/chat.html": [],
+    "app/resources/htmls/import.html": [],
+    "app/resources/prompts/answer_out.prompt": [],
+    "app/resources/prompts/hyde_prompt.prompt": [],
+    "app/resources/prompts/image_summary.prompt": [],
+    "app/resources/prompts/item_name_recognition.prompt": [],
+    "app/resources/prompts/product_recognition_system.prompt": [],
+    "app/resources/prompts/rerank_text_refine.prompt": [],
+    "app/resources/prompts/rewritten_query_and_itemnames.prompt": [],
+    "app/shared/__init__.py": [],
+    "app/shared/clients/__init__.py": [
+      "app/shared/clients/milvus_utils.py",
+      "app/shared/clients/minio_utils.py",
+      "app/shared/clients/mongo_history_utils.py"
+    ],
+    "app/shared/clients/milvus_utils.py": [
+      "app/shared/config/milvus_config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/clients/minio_utils.py": [
+      "app/shared/config/minio_config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/clients/mongo_history_utils.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/config/__init__.py": [
+      "app/shared/config/bailian_mcp_config.py",
+      "app/shared/config/embedding_config.py",
+      "app/shared/config/lm_config.py",
+      "app/shared/config/milvus_config.py",
+      "app/shared/config/mineru_config.py",
+      "app/shared/config/minio_config.py",
+      "app/shared/config/reranker_config.py"
+    ],
+    "app/shared/config/bailian_mcp_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/common.py": [],
+    "app/shared/config/embedding_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/lm_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/milvus_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/mineru_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/minio_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/reranker_config.py": [
+      "app/shared/config/common.py"
+    ],
+    "app/shared/config/settings_config.py": [],
+    "app/shared/model/__init__.py": [
+      "app/shared/model/embedding_utils.py",
+      "app/shared/model/lm_utils.py",
+      "app/shared/model/reranker_utils.py"
+    ],
+    "app/shared/model/embedding_utils.py": [
+      "app/shared/config/embedding_config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/model/lm_utils.py": [
+      "app/shared/config/lm_config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/model/reranker_utils.py": [
+      "app/shared/config/reranker_config.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/runtime/__init__.py": [],
+    "app/shared/runtime/load_prompt.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/runtime/logger.py": [],
+    "app/shared/tool/__init__.py": [],
+    "app/shared/tool/download_bgem3.py": [],
+    "app/shared/tool/download_reranker.py": [],
+    "app/shared/utils/__init__.py": [],
+    "app/shared/utils/escape_milvus_string_utils.py": [],
+    "app/shared/utils/format_utils.py": [],
+    "app/shared/utils/normalize_sparse_vector.py": [],
+    "app/shared/utils/path_util.py": [],
+    "app/shared/utils/rate_limit_utils.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "app/shared/utils/sse_utils.py": [],
+    "app/shared/utils/task_utils.py": [
+      "app/shared/utils/sse_utils.py"
+    ],
+    "notes/day06_掌柜智库_项目介绍和搭建.txt": [],
+    "notes/day07_掌柜智库_导入架构和pdf处理.txt": [],
+    "notes/day08_掌柜智库_完善pdf和图片处理节点.txt": [],
+    "notes/day09_掌柜智库_继续图片处理节点.txt": [],
+    "notes/day10_掌柜智库_图片处理总结和文档切割.txt": [],
+    "notes/day11_掌柜智库_数据入口和导入web模块.txt": [],
+    "notes/day12_掌柜智库_导入收尾和web模块集成.txt": [],
+    "notes/day13_掌柜智库_查询模块图定义和web实现.txt": [],
+    "notes/day14_掌柜智库_web实现和意图识别.txt": [],
+    "notes/day15_掌柜智库_意图识别和多路检索.txt": [],
+    "notes/day16_掌柜智库_数据重排和结果输出.txt": [],
+    "pyproject.toml": [],
+    "tests/01_project_logger_output.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/02_project_load_prompt.py": [
+      "app/shared/runtime/load_prompt.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/03_import_state_test.py": [
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/04_import_graph_test.py": [
+      "app/process/import_/agent/main_graph.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/05_base64_byte_str.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/06_mimetype_guess.py": [],
+    "tests/07_reg_use_test.py": [],
+    "tests/08_test_title_deal.py": [],
+    "tests/09_test_import_graph_invoke.py": [
+      "app/process/import_/agent/main_graph.py",
+      "app/process/import_/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/10_fastapi/01_fast_base_use.py": [
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/10_fastapi/02_fast_async.py": [],
+    "tests/10_fastapi/__init__.py": [],
+    "tests/11_query_graph_test.py": [
+      "app/process/query/agent/main_graph.py",
+      "app/process/query/agent/state.py",
+      "app/shared/runtime/logger.py"
+    ],
+    "tests/12_sse/01_sse_data.html": [],
+    "tests/12_sse/01_sse_data.py": [],
+    "tests/12_sse/02_sse_data.html": [],
+    "tests/12_sse/02_sse_data.py": [],
+    "tests/12_sse/03_sse_data.py": [],
+    "tests/12_sse/__init__.py": [],
+    "tests/__init__.py": [],
+    "tests/test_rag_eval_tester.py": [
+      "app/rag_eval/__init__.py"
+    ]
+  }
+}

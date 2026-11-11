@@ -1,0 +1,32 @@
+Found 15 batch files (10 logical batches, 3 multi-part):
+  batch-1-part-1.json: 22 nodes, 92 edges
+  batch-1-part-2.json: 39 nodes, 111 edges
+  batch-1-part-3.json: 24 nodes, 50 edges
+  batch-2-part-1.json: 26 nodes, 92 edges
+  batch-2-part-2.json: 42 nodes, 139 edges
+  batch-2-part-3.json: 22 nodes, 49 edges
+  batch-3.json: 30 nodes, 74 edges
+  batch-4-part-1.json: 24 nodes, 64 edges
+  batch-4-part-2.json: 25 nodes, 91 edges
+  batch-5.json: 10 nodes, 33 edges
+  batch-6.json: 7 nodes, 18 edges
+  batch-7.json: 11 nodes, 68 edges
+  batch-8.json: 25 nodes, 9 edges
+  batch-9.json: 34 nodes, 24 edges
+  batch-10.json: 6 nodes, 6 edges
+
+Input: 347 nodes, 920 edges
+
+Fixed (3 corrections):
+     3 ¡Á tested_by edges dropped (orphan endpoint or test\u2194test / prod\u2194prod pair)
+
+Tested-by linker:
+     0 ¡Á tested_by edges produced (path-convention supplement, production ¡ú test)
+     6 ¡Á production nodes tagged "tested"
+
+Output: 347 nodes, 917 edges
+
+Imports edge recovery:
+  Recovered 0 `imports` edges from importMap (143 entries scanned)
+
+Written to C:\Users\LD\Desktop\ai_0511_knowledge_base-master\.ua\intermediate\assembled-graph.json (379 KB)

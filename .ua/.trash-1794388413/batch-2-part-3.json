@@ -1,0 +1,690 @@
+{
+ "nodes": [
+  {
+   "id": "file:app/rag/query/web_search_service.py",
+   "type": "file",
+   "name": "web_search_service.py",
+   "filePath": "app/rag/query/web_search_service.py",
+   "summary": "网络搜索服务：通过阿里百炼 MCP 客户端调用联网搜索工具，并将结果解析为统一文档结构写回状态。",
+   "tags": [
+    "service",
+    "web-search",
+    "mcp",
+    "async"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/shared/runtime/load_prompt.py",
+   "type": "file",
+   "name": "load_prompt.py",
+   "filePath": "app/shared/runtime/load_prompt.py",
+   "summary": "提示词加载工具，按名称与目录读取 prompts 模板文件并进行参数格式化。",
+   "tags": [
+    "utility",
+    "prompt",
+    "template"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:app/shared/utils/sse_utils.py",
+   "type": "file",
+   "name": "sse_utils.py",
+   "filePath": "app/shared/utils/sse_utils.py",
+   "summary": "SSE 工具模块：维护按 session 划分的内存队列，定义事件类型并提供推送消息与异步事件流生成器，支持断线检测。",
+   "tags": [
+    "utility",
+    "sse",
+    "streaming",
+    "queue"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/shared/utils/task_utils.py",
+   "type": "file",
+   "name": "task_utils.py",
+   "filePath": "app/shared/utils/task_utils.py",
+   "summary": "内存态任务追踪工具：记录各会话运行中/已完成节点与任务状态，提供节点中文名映射，并在流式模式下通过 SSE 推送进度。",
+   "tags": [
+    "utility",
+    "task-tracking",
+    "state-management",
+    "sse"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:tests/02_project_load_prompt.py",
+   "type": "file",
+   "name": "02_project_load_prompt.py",
+   "filePath": "tests/02_project_load_prompt.py",
+   "summary": "手工测试脚本，验证 load_prompt 能正确加载并格式化图片摘要提示词。",
+   "tags": [
+    "test",
+    "prompt",
+    "script"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "file:tests/11_query_graph_test.py",
+   "type": "file",
+   "name": "11_query_graph_test.py",
+   "filePath": "tests/11_query_graph_test.py",
+   "summary": "查询图端到端测试脚本：构造默认状态调用 query_graph_app 并打印结果与图结构 ASCII。",
+   "tags": [
+    "test",
+    "langgraph",
+    "integration-test"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag/query/web_search_service.py:get_data_and_validate",
+   "type": "function",
+   "name": "get_data_and_validate",
+   "filePath": "app/rag/query/web_search_service.py",
+   "lineRange": [
+    11,
+    16
+   ],
+   "summary": "提取并校验改写问题。",
+   "tags": [
+    "validation",
+    "state"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag/query/web_search_service.py:web_search_bailian_mcp",
+   "type": "function",
+   "name": "web_search_bailian_mcp",
+   "filePath": "app/rag/query/web_search_service.py",
+   "lineRange": [
+    20,
+    46
+   ],
+   "summary": "异步连接百炼 MCP 服务并调用联网搜索工具获取原始结果。",
+   "tags": [
+    "mcp",
+    "async",
+    "web-search"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag/query/web_search_service.py:search_by_web",
+   "type": "function",
+   "name": "search_by_web",
+   "filePath": "app/rag/query/web_search_service.py",
+   "lineRange": [
+    52,
+    96
+   ],
+   "summary": "网络搜索主流程：运行异步 MCP 调用、解析结果为文档列表并写回状态。",
+   "tags": [
+    "service",
+    "web-search",
+    "parsing"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/runtime/load_prompt.py:load_prompt",
+   "type": "function",
+   "name": "load_prompt",
+   "filePath": "app/shared/runtime/load_prompt.py",
+   "lineRange": [
+    5,
+    28
+   ],
+   "summary": "按名称与子目录读取提示词模板文件，并用关键字参数格式化。",
+   "tags": [
+    "utility",
+    "prompt",
+    "template"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "class:app/shared/utils/sse_utils.py:SSEEvent",
+   "type": "class",
+   "name": "SSEEvent",
+   "filePath": "app/shared/utils/sse_utils.py",
+   "lineRange": [
+    11,
+    17
+   ],
+   "summary": "SSE 事件类型常量集合（ready/progress/delta/final/error/close）。",
+   "tags": [
+    "constants",
+    "sse"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/sse_utils.py:create_sse_queue",
+   "type": "function",
+   "name": "create_sse_queue",
+   "filePath": "app/shared/utils/sse_utils.py",
+   "lineRange": [
+    28,
+    33
+   ],
+   "summary": "为会话创建并注册新的 SSE 消息队列。",
+   "tags": [
+    "sse",
+    "queue"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/sse_utils.py:push_to_session",
+   "type": "function",
+   "name": "push_to_session",
+   "filePath": "app/shared/utils/sse_utils.py",
+   "lineRange": [
+    46,
+    55
+   ],
+   "summary": "向指定会话的 SSE 队列推送事件与数据。",
+   "tags": [
+    "sse",
+    "event-handler"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/sse_utils.py:sse_generator",
+   "type": "function",
+   "name": "sse_generator",
+   "filePath": "app/shared/utils/sse_utils.py",
+   "lineRange": [
+    57,
+    112
+   ],
+   "summary": "异步生成器，持续从会话队列读取事件并打包为 SSE 格式输出，检测客户端断开与关闭信号。",
+   "tags": [
+    "sse",
+    "async-generator",
+    "streaming"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:add_running_task",
+   "type": "function",
+   "name": "add_running_task",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    65,
+    80
+   ],
+   "summary": "记录节点开始运行，并在流式模式下推送进度事件。",
+   "tags": [
+    "task-tracking",
+    "sse"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:add_done_task",
+   "type": "function",
+   "name": "add_done_task",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    83,
+    105
+   ],
+   "summary": "将节点从运行中移至已完成，并在流式模式下推送进度事件。",
+   "tags": [
+    "task-tracking",
+    "sse"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:get_task_status",
+   "type": "function",
+   "name": "get_task_status",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    107,
+    117
+   ],
+   "summary": "获取任务的当前状态。",
+   "tags": [
+    "task-tracking",
+    "getter"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:get_done_task_list",
+   "type": "function",
+   "name": "get_done_task_list",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    120,
+    129
+   ],
+   "summary": "获取已完成节点列表（中文名）。",
+   "tags": [
+    "task-tracking",
+    "getter"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:get_running_task_list",
+   "type": "function",
+   "name": "get_running_task_list",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    132,
+    139
+   ],
+   "summary": "获取运行中节点列表（中文名）。",
+   "tags": [
+    "task-tracking",
+    "getter"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:update_task_status",
+   "type": "function",
+   "name": "update_task_status",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    142,
+    152
+   ],
+   "summary": "更新任务整体状态并在流式模式下推送状态事件。",
+   "tags": [
+    "task-tracking",
+    "sse"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "type": "function",
+   "name": "task_push_queue",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    155,
+    160
+   ],
+   "summary": "把任务进度信息推送到 SSE 会话队列。",
+   "tags": [
+    "sse",
+    "task-tracking"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/utils/task_utils.py:clear_task",
+   "type": "function",
+   "name": "clear_task",
+   "filePath": "app/shared/utils/task_utils.py",
+   "lineRange": [
+    164,
+    167
+   ],
+   "summary": "清理任务的运行、完成与状态记录。",
+   "tags": [
+    "task-tracking",
+    "cleanup"
+   ],
+   "complexity": "simple"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "file:app/infra/config/providers.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "file:app/process/query/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "file:app/rag/query/config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/runtime/load_prompt.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "file:app/shared/utils/sse_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/02_project_load_prompt.py",
+   "target": "file:app/shared/runtime/load_prompt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/02_project_load_prompt.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/11_query_graph_test.py",
+   "target": "file:app/process/query/agent/main_graph.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/11_query_graph_test.py",
+   "target": "file:app/process/query/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:tests/11_query_graph_test.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:get_data_and_validate",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:get_data_and_validate",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:web_search_bailian_mcp",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:web_search_bailian_mcp",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:search_by_web",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/query/web_search_service.py",
+   "target": "function:app/rag/query/web_search_service.py:search_by_web",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/runtime/load_prompt.py",
+   "target": "function:app/shared/runtime/load_prompt.py:load_prompt",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/runtime/load_prompt.py",
+   "target": "function:app/shared/runtime/load_prompt.py:load_prompt",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "class:app/shared/utils/sse_utils.py:SSEEvent",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "class:app/shared/utils/sse_utils.py:SSEEvent",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:create_sse_queue",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:create_sse_queue",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:push_to_session",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:push_to_session",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:sse_generator",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/sse_utils.py",
+   "target": "function:app/shared/utils/sse_utils.py:sse_generator",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:add_running_task",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:add_running_task",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:add_done_task",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:add_done_task",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_task_status",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_task_status",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_done_task_list",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_done_task_list",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_running_task_list",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:get_running_task_list",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:update_task_status",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:update_task_status",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:clear_task",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/utils/task_utils.py",
+   "target": "function:app/shared/utils/task_utils.py:clear_task",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "target": "function:app/shared/utils/sse_utils.py:push_to_session",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/utils/task_utils.py:add_running_task",
+   "target": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/utils/task_utils.py:add_done_task",
+   "target": "function:app/shared/utils/task_utils.py:task_push_queue",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/query/web_search_service.py:search_by_web",
+   "target": "function:app/rag/query/web_search_service.py:get_data_and_validate",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/query/web_search_service.py:search_by_web",
+   "target": "function:app/rag/query/web_search_service.py:web_search_bailian_mcp",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/runtime/load_prompt.py",
+   "target": "file:tests/02_project_load_prompt.py",
+   "type": "tested_by",
+   "direction": "forward",
+   "weight": 0.5
+  }
+ ]
+}

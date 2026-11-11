@@ -1,0 +1,845 @@
+{
+ "nodes": [
+  {
+   "id": "file:app/infra/milvus/VectorStore.py",
+   "type": "file",
+   "name": "VectorStore.py",
+   "filePath": "app/infra/milvus/VectorStore.py",
+   "summary": "封装 Milvus 访问的网关类 MilvusGateway，从基础设施配置读取切片与商品名集合名称，并代理客户端获取、混合检索请求构建与混合检索调用。",
+   "tags": [
+    "milvus",
+    "gateway",
+    "vector-store",
+    "adapter"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "type": "file",
+   "name": "node_item_name_recognition.py",
+   "filePath": "app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "summary": "导入流程 LangGraph 中的商品名识别节点，登记任务状态后调用商品名识别与入库服务，并附带本地调试用的测试函数。",
+   "tags": [
+    "langgraph-node",
+    "import-pipeline",
+    "item-name",
+    "task-status"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/rag/import_/item_name_service.py",
+   "type": "file",
+   "name": "item_name_service.py",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "summary": "商品名识别与索引服务：校验状态数据、调用 LLM 从文档切片中识别商品主体名称，创建 Milvus 商品名集合并写入稠密/稀疏向量。",
+   "tags": [
+    "service",
+    "llm",
+    "milvus",
+    "item-name",
+    "import-pipeline"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/rag_eval/dataset.py",
+   "type": "file",
+   "name": "dataset.py",
+   "filePath": "app/rag_eval/dataset.py",
+   "summary": "RAG 评估样本定义模块，维护 HAK 180 测试知识切片、模拟联网搜索文档、批量评测问题题库及题库 JSON 文件的读写。",
+   "tags": [
+    "rag-eval",
+    "dataset",
+    "test-fixture",
+    "data-model"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:app/rag_eval/metrics.py",
+   "type": "file",
+   "name": "metrics.py",
+   "filePath": "app/rag_eval/metrics.py",
+   "summary": "RAG 评估指标计算模块，提供切片 ID 规范化去重、商品名命中率以及召回率/精确率/命中等检索分层指标的计算。",
+   "tags": [
+    "rag-eval",
+    "metrics",
+    "utility",
+    "retrieval-quality"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "type": "class",
+   "name": "MilvusGateway",
+   "filePath": "app/infra/milvus/VectorStore.py",
+   "lineRange": [
+    7,
+    63
+   ],
+   "summary": "Milvus 网关类，以属性形式暴露集合名称与客户端，并封装混合检索请求构建和执行。",
+   "tags": [
+    "gateway",
+    "milvus",
+    "class"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "type": "function",
+   "name": "node_item_name_recognition",
+   "filePath": "app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "lineRange": [
+    7,
+    15
+   ],
+   "summary": "导入图节点入口，标记任务运行、调用 recognize_and_index_item_name 识别并入库商品名后标记完成。",
+   "tags": [
+    "langgraph-node",
+    "item-name",
+    "entry-point"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:test_node_item_name_recognition",
+   "type": "function",
+   "name": "test_node_item_name_recognition",
+   "filePath": "app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "lineRange": [
+    18,
+    69
+   ],
+   "summary": "本地调试函数，构造模拟导入状态运行商品名识别节点并打印结果。",
+   "tags": [
+    "test",
+    "debug",
+    "item-name"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag/import_/item_name_service.py:get_data_and_validate",
+   "type": "function",
+   "name": "get_data_and_validate",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "lineRange": [
+    16,
+    27
+   ],
+   "summary": "从导入状态中提取文件标题与切片列表并校验其有效性，缺失时抛出 ValueError。",
+   "tags": [
+    "validation",
+    "state",
+    "utility"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag/import_/item_name_service.py:call_model_recognition_item_name",
+   "type": "function",
+   "name": "call_model_recognition_item_name",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "lineRange": [
+    31,
+    58
+   ],
+   "summary": "拼接切片内容并加载提示词，通过 LLM 链识别文档对应的商品名称。",
+   "tags": [
+    "llm",
+    "prompt",
+    "item-name"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag/import_/item_name_service.py:insert_into_milvus_collection",
+   "type": "function",
+   "name": "insert_into_milvus_collection",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "lineRange": [
+    65,
+    96
+   ],
+   "summary": "为商品名生成稠密与稀疏向量，先删除同名旧记录再写入 Milvus 商品名集合。",
+   "tags": [
+    "milvus",
+    "embedding",
+    "persistence"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag/import_/item_name_service.py:prepare_item_name_milvus_collection",
+   "type": "function",
+   "name": "prepare_item_name_milvus_collection",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "lineRange": [
+    100,
+    176
+   ],
+   "summary": "检查或创建 Milvus 商品名集合，定义字段 schema 与稠密/稀疏索引后加载集合。",
+   "tags": [
+    "milvus",
+    "schema",
+    "index"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "type": "function",
+   "name": "recognize_and_index_item_name",
+   "filePath": "app/rag/import_/item_name_service.py",
+   "lineRange": [
+    179,
+    195
+   ],
+   "summary": "商品名服务主流程：校验数据、调用模型识别、准备集合并写入向量，返回更新后的状态。",
+   "tags": [
+    "service",
+    "orchestration",
+    "item-name"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/dataset.py:build_import_chunks",
+   "type": "function",
+   "name": "build_import_chunks",
+   "filePath": "app/rag_eval/dataset.py",
+   "lineRange": [
+    28,
+    135
+   ],
+   "summary": "构造 HAK 180 产品的测试知识切片列表，作为评估导入数据集。",
+   "tags": [
+    "dataset",
+    "test-fixture",
+    "chunks"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:app/rag_eval/dataset.py:build_web_search_docs",
+   "type": "function",
+   "name": "build_web_search_docs",
+   "filePath": "app/rag_eval/dataset.py",
+   "lineRange": [
+    138,
+    160
+   ],
+   "summary": "构造模拟的联网搜索文档，用于评估时替代真实 Web 搜索结果。",
+   "tags": [
+    "dataset",
+    "mock",
+    "web-search"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/dataset.py:build_batch_eval_cases",
+   "type": "function",
+   "name": "build_batch_eval_cases",
+   "filePath": "app/rag_eval/dataset.py",
+   "lineRange": [
+    163,
+    260
+   ],
+   "summary": "基于已入库切片 ID 生成批量评测问题题库，含期望命中的切片与商品名。",
+   "tags": [
+    "dataset",
+    "eval-cases",
+    "test-fixture"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:app/rag_eval/dataset.py:write_batch_eval_cases",
+   "type": "function",
+   "name": "write_batch_eval_cases",
+   "filePath": "app/rag_eval/dataset.py",
+   "lineRange": [
+    263,
+    276
+   ],
+   "summary": "将评测题库以 JSON 格式写入 artifacts 目录。",
+   "tags": [
+    "serialization",
+    "file-io",
+    "dataset"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/dataset.py:load_batch_eval_cases",
+   "type": "function",
+   "name": "load_batch_eval_cases",
+   "filePath": "app/rag_eval/dataset.py",
+   "lineRange": [
+    279,
+    290
+   ],
+   "summary": "从 artifacts 目录读取已生成的评测题库 JSON，不存在时返回空列表。",
+   "tags": [
+    "serialization",
+    "file-io",
+    "dataset"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:_normalize_chunk_ids",
+   "type": "function",
+   "name": "_normalize_chunk_ids",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    16,
+    30
+   ],
+   "summary": "将切片 ID 列表统一转换为字符串形式。",
+   "tags": [
+    "utility",
+    "normalization"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:_deduplicate_keep_order",
+   "type": "function",
+   "name": "_deduplicate_keep_order",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    33,
+    52
+   ],
+   "summary": "在保持原有顺序的前提下对列表去重。",
+   "tags": [
+    "utility",
+    "deduplication"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:extract_chunk_ids",
+   "type": "function",
+   "name": "extract_chunk_ids",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    55,
+    76
+   ],
+   "summary": "从检索结果文档列表中提取并去重切片 ID。",
+   "tags": [
+    "utility",
+    "extraction",
+    "metrics"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:compute_item_name_hit_rate",
+   "type": "function",
+   "name": "compute_item_name_hit_rate",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    79,
+    100
+   ],
+   "summary": "计算识别出的商品名与期望商品名之间的命中率。",
+   "tags": [
+    "metrics",
+    "item-name"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "type": "function",
+   "name": "compute_chunk_metrics",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    103,
+    176
+   ],
+   "summary": "计算检索切片相对期望切片的召回率、精确率、命中与 Top-K 等指标。",
+   "tags": [
+    "metrics",
+    "recall",
+    "precision"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "type": "function",
+   "name": "evaluate_query_state",
+   "filePath": "app/rag_eval/metrics.py",
+   "lineRange": [
+    179,
+    232
+   ],
+   "summary": "对查询图结果状态逐层（普通检索、HyDE、RRF、重排）计算指标，并汇总商品名命中率。",
+   "tags": [
+    "metrics",
+    "evaluation",
+    "orchestration"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:app/infra/milvus/VectorStore.py",
+   "target": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/infra/milvus/VectorStore.py",
+   "target": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:test_node_item_name_recognition",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:get_data_and_validate",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:get_data_and_validate",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:call_model_recognition_item_name",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:call_model_recognition_item_name",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:insert_into_milvus_collection",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:insert_into_milvus_collection",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:prepare_item_name_milvus_collection",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:prepare_item_name_milvus_collection",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_import_chunks",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_import_chunks",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_web_search_docs",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_web_search_docs",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_batch_eval_cases",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:build_batch_eval_cases",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:write_batch_eval_cases",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:write_batch_eval_cases",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:load_batch_eval_cases",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/dataset.py",
+   "target": "function:app/rag_eval/dataset.py:load_batch_eval_cases",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:_normalize_chunk_ids",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:_deduplicate_keep_order",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:extract_chunk_ids",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:extract_chunk_ids",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:compute_item_name_hit_rate",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:compute_item_name_hit_rate",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/metrics.py",
+   "target": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/infra/milvus/VectorStore.py",
+   "target": "file:app/infra/config/providers.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/infra/milvus/VectorStore.py",
+   "target": "file:app/shared/clients/milvus_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "file:app/process/import_/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "file:app/rag/import_/item_name_service.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "target": "file:app/shared/utils/task_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "file:app/infra/milvus/VectorStore.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "file:app/infra/model/model_providers.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "file:app/process/import_/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "file:app/shared/runtime/load_prompt.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag/import_/item_name_service.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "target": "function:app/shared/clients/milvus_utils.py:get_milvus_client",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "target": "function:app/shared/clients/milvus_utils.py:create_hybrid_search_requests",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "class:app/infra/milvus/VectorStore.py:MilvusGateway",
+   "target": "function:app/shared/clients/milvus_utils.py:hybrid_search",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "target": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "target": "function:app/shared/utils/task_utils.py:add_running_task",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "target": "function:app/shared/utils/task_utils.py:add_done_task",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:test_node_item_name_recognition",
+   "target": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "target": "function:app/rag/import_/item_name_service.py:get_data_and_validate",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "target": "function:app/rag/import_/item_name_service.py:call_model_recognition_item_name",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "target": "function:app/rag/import_/item_name_service.py:prepare_item_name_milvus_collection",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/import_/item_name_service.py:recognize_and_index_item_name",
+   "target": "function:app/rag/import_/item_name_service.py:insert_into_milvus_collection",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag/import_/item_name_service.py:call_model_recognition_item_name",
+   "target": "function:app/shared/runtime/load_prompt.py:load_prompt",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:extract_chunk_ids",
+   "target": "function:app/rag_eval/metrics.py:_deduplicate_keep_order",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "target": "function:app/rag_eval/metrics.py:_deduplicate_keep_order",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "target": "function:app/rag_eval/metrics.py:_normalize_chunk_ids",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "target": "function:app/rag_eval/metrics.py:compute_chunk_metrics",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "target": "function:app/rag_eval/metrics.py:extract_chunk_ids",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "target": "function:app/rag_eval/metrics.py:compute_item_name_hit_rate",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  }
+ ]
+}

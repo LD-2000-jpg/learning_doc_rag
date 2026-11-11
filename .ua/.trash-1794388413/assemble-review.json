@@ -1,0 +1,15 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "合并脚本仅丢弃 3 条 tested_by 边（孤立端点或 test↔test/prod↔prod 配对），属合理清理，无 ID 规范化问题。",
+    "全部 347 个节点均有 id，类型均合法（function/file/class/document/config），complexity 均为 simple/moderate/complex。",
+    "917 条边中无悬空引用；跨批次 calls 边（批次 2 与批次 4 的查询/RAG 评测代码）目标 ID 均存在。",
+    "批次 6 中 app/rag_eval/tester.py 到 app/rag_eval/runner.py 的 depends_on 边以及 RagEvalTester 对 insert_batch_eval_dataset、run_batch_eval、close_mongo_client 的 3 条 calls 边均已保留，目标 ID 正确。",
+    "importMap 中全部 231 条导入关系在图中均有对应 imports 边，无需补充跨批次边。"
+  ]
+}

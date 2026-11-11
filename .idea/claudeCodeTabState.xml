@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClaudeCodeTabState">
+    <option name="tabNames">
+      <map>
+        <entry key="0" value="图谱构建" />
+      </map>
+    </option>
+    <option name="tabSessions">
+      <map>
+        <entry key="0">
+          <value>
+            <TabSessionState>
+              <option name="projectPath" value="C:\Users\LD\Desktop\ai_0511_knowledge_base-master" />
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="d9a705b2-bc84-46f9-90a6-d928f112bc4b" />
+              <option name="cwd" value="C:\Users\LD\Desktop\ai_0511_knowledge_base-master" />
+              <option name="model" value="claude-opus-5-5[1m]" />
+              <option name="permissionMode" value="acceptEdits" />
+            </TabSessionState>
+          </value>
+        </entry>
+        <entry key="1">
+          <value>
+            <TabSessionState>
+              <option name="projectPath" value="C:\Users\LD\Desktop\ai_0511_knowledge_base-master" />
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="e4ef2a36-614d-446b-a935-3b73a255dbb1" />
+              <option name="cwd" value="C:\Users\LD\Desktop\ai_0511_knowledge_base-master" />
+              <option name="model" value="claude-opus-5-5[1m]" />
+              <option name="permissionMode" value="acceptEdits" />
+            </TabSessionState>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tabCount" value="2" />
+  </component>
+</project>

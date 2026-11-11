@@ -1,0 +1,1053 @@
+{
+ "nodes": [
+  {
+   "id": "file:app/rag_eval/runner.py",
+   "type": "file",
+   "name": "runner.py",
+   "filePath": "app/rag_eval/runner.py",
+   "summary": "RAG 批量评估执行器：检查环境后将测试数据经导入节点写入 Milvus，逐题运行检索、HyDE、RRF 与重排节点并计算指标，汇总生成中文评估报告。",
+   "tags": [
+    "rag-eval",
+    "entry-point",
+    "orchestration",
+    "batch-runner",
+    "report"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "file:app/shared/clients/__init__.py",
+   "type": "file",
+   "name": "__init__.py",
+   "filePath": "app/shared/clients/__init__.py",
+   "summary": "共享客户端包的统一出口，重新导出 Milvus、MinIO 与 MongoDB 历史记录相关的工具函数。",
+   "tags": [
+    "barrel",
+    "entry-point",
+    "clients"
+   ],
+   "complexity": "simple",
+   "languageNotes": "Python 包 __init__.py 通过 __all__ 显式声明公共 API，实现 barrel 式统一导出。"
+  },
+  {
+   "id": "file:app/shared/clients/milvus_utils.py",
+   "type": "file",
+   "name": "milvus_utils.py",
+   "filePath": "app/shared/clients/milvus_utils.py",
+   "summary": "Milvus 客户端工具模块，负责创建 MilvusClient、构建稠密与稀疏向量的 AnnSearchRequest，并使用 WeightedRanker 执行混合检索。",
+   "tags": [
+    "milvus",
+    "client",
+    "hybrid-search",
+    "utility"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "file:app/shared/clients/mongo_history_utils.py",
+   "type": "file",
+   "name": "mongo_history_utils.py",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "summary": "基于 MongoDB 的对话历史工具，封装 HistoryMongoTool 单例，提供保存/更新消息、回填商品名、查询最近消息与清空历史等操作。",
+   "tags": [
+    "mongodb",
+    "chat-history",
+    "singleton",
+    "persistence",
+    "client"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:insert_env_ready",
+   "type": "function",
+   "name": "insert_env_ready",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    58,
+    71
+   ],
+   "summary": "检查导入评估所需的模型与向量配置是否就绪。",
+   "tags": [
+    "validation",
+    "environment"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:batch_eval_ready",
+   "type": "function",
+   "name": "batch_eval_ready",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    74,
+    90
+   ],
+   "summary": "检查批量评估所需的嵌入、重排等配置是否就绪。",
+   "tags": [
+    "validation",
+    "environment"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:milvus_ready",
+   "type": "function",
+   "name": "milvus_ready",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    93,
+    101
+   ],
+   "summary": "检查 Milvus 连接配置是否可用。",
+   "tags": [
+    "validation",
+    "milvus"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:close_mongo_client",
+   "type": "function",
+   "name": "close_mongo_client",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    104,
+    110
+   ],
+   "summary": "关闭 Mongo 历史工具持有的客户端连接，避免评估进程残留连接。",
+   "tags": [
+    "cleanup",
+    "mongodb"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:_query_chunk_rows_with_retry",
+   "type": "function",
+   "name": "_query_chunk_rows_with_retry",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    113,
+    146
+   ],
+   "summary": "带重试地从 Milvus 查询已导入的切片行，等待数据可见并排序返回。",
+   "tags": [
+    "milvus",
+    "retry",
+    "query"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "type": "function",
+   "name": "insert_batch_eval_dataset",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    149,
+    226
+   ],
+   "summary": "依次运行商品名识别、BGE 嵌入、Milvus 导入节点写入测试数据，再生成并保存评测题库。",
+   "tags": [
+    "import-pipeline",
+    "dataset",
+    "orchestration"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "type": "function",
+   "name": "run_query_eval_case",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    229,
+    274
+   ],
+   "summary": "对单个评测问题依次运行普通检索、HyDE 检索、RRF 融合和重排节点，并计算评估指标。",
+   "tags": [
+    "evaluation",
+    "query-pipeline",
+    "orchestration"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:summarize_eval_results",
+   "type": "function",
+   "name": "summarize_eval_results",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    277,
+    307
+   ],
+   "summary": "对所有评测结果按检索层计算平均召回率、精确率等汇总指标。",
+   "tags": [
+    "metrics",
+    "aggregation"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:_to_chinese_case_result",
+   "type": "function",
+   "name": "_to_chinese_case_result",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    310,
+    338
+   ],
+   "summary": "将单题评估结果转换为中文字段名的报告结构。",
+   "tags": [
+    "report",
+    "localization",
+    "formatting"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:_to_chinese_summary",
+   "type": "function",
+   "name": "_to_chinese_summary",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    341,
+    357
+   ],
+   "summary": "将汇总指标转换为中文字段名的报告结构。",
+   "tags": [
+    "report",
+    "localization",
+    "formatting"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "type": "function",
+   "name": "save_batch_eval_report",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    360,
+    393
+   ],
+   "summary": "将中文化的汇总与逐题结果写入 artifacts 目录下的 JSON 报告文件。",
+   "tags": [
+    "report",
+    "serialization",
+    "file-io"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/rag_eval/runner.py:run_batch_eval",
+   "type": "function",
+   "name": "run_batch_eval",
+   "filePath": "app/rag_eval/runner.py",
+   "lineRange": [
+    396,
+    435
+   ],
+   "summary": "批量评估主入口：检查环境、加载题库、逐题评估、汇总并保存报告。",
+   "tags": [
+    "entry-point",
+    "evaluation",
+    "orchestration"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/clients/milvus_utils.py:get_milvus_client",
+   "type": "function",
+   "name": "get_milvus_client",
+   "filePath": "app/shared/clients/milvus_utils.py",
+   "lineRange": [
+    12,
+    33
+   ],
+   "summary": "根据 Milvus 配置创建并返回 MilvusClient，失败时记录日志并返回 None。",
+   "tags": [
+    "milvus",
+    "client",
+    "factory"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/clients/milvus_utils.py:create_hybrid_search_requests",
+   "type": "function",
+   "name": "create_hybrid_search_requests",
+   "filePath": "app/shared/clients/milvus_utils.py",
+   "lineRange": [
+    36,
+    74
+   ],
+   "summary": "基于稠密与稀疏查询向量构建两个 AnnSearchRequest 混合检索请求。",
+   "tags": [
+    "milvus",
+    "hybrid-search",
+    "request-builder"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/clients/milvus_utils.py:hybrid_search",
+   "type": "function",
+   "name": "hybrid_search",
+   "filePath": "app/shared/clients/milvus_utils.py",
+   "lineRange": [
+    77,
+    120
+   ],
+   "summary": "使用 WeightedRanker 对稠密/稀疏请求加权融合，执行 Milvus 混合检索并返回结果。",
+   "tags": [
+    "milvus",
+    "hybrid-search",
+    "ranking"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "class:app/shared/clients/mongo_history_utils.py:HistoryMongoTool",
+   "type": "class",
+   "name": "HistoryMongoTool",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    17,
+    53
+   ],
+   "summary": "MongoDB 历史工具类，从环境变量读取连接配置，初始化客户端与 chat_message 集合及索引。",
+   "tags": [
+    "mongodb",
+    "client",
+    "class"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "function",
+   "name": "get_history_mongo_tool",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    68,
+    80
+   ],
+   "summary": "懒加载返回全局唯一的 HistoryMongoTool 实例。",
+   "tags": [
+    "singleton",
+    "factory",
+    "mongodb"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/clients/mongo_history_utils.py:clear_history",
+   "type": "function",
+   "name": "clear_history",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    84,
+    103
+   ],
+   "summary": "删除指定会话的全部聊天历史记录。",
+   "tags": [
+    "mongodb",
+    "chat-history",
+    "delete"
+   ],
+   "complexity": "simple"
+  },
+  {
+   "id": "function:app/shared/clients/mongo_history_utils.py:save_chat_message",
+   "type": "function",
+   "name": "save_chat_message",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    105,
+    155
+   ],
+   "summary": "保存或按 ID 更新一条聊天消息（含角色、内容、商品名等），返回消息 ID。",
+   "tags": [
+    "mongodb",
+    "chat-history",
+    "persistence"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/clients/mongo_history_utils.py:update_message_item_names",
+   "type": "function",
+   "name": "update_message_item_names",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    158,
+    186
+   ],
+   "summary": "批量为指定消息回填识别出的商品名。",
+   "tags": [
+    "mongodb",
+    "chat-history",
+    "update"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "function:app/shared/clients/mongo_history_utils.py:get_recent_messages",
+   "type": "function",
+   "name": "get_recent_messages",
+   "filePath": "app/shared/clients/mongo_history_utils.py",
+   "lineRange": [
+    189,
+    217
+   ],
+   "summary": "按时间倒序查询会话最近的若干条聊天消息。",
+   "tags": [
+    "mongodb",
+    "chat-history",
+    "query"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:insert_env_ready",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:insert_env_ready",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:batch_eval_ready",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:batch_eval_ready",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:milvus_ready",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:milvus_ready",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:close_mongo_client",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:close_mongo_client",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:_query_chunk_rows_with_retry",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:summarize_eval_results",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:summarize_eval_results",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:_to_chinese_case_result",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:_to_chinese_summary",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:run_batch_eval",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "function:app/rag_eval/runner.py:run_batch_eval",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:get_milvus_client",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:get_milvus_client",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:create_hybrid_search_requests",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:create_hybrid_search_requests",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:hybrid_search",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "function:app/shared/clients/milvus_utils.py:hybrid_search",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "class:app/shared/clients/mongo_history_utils.py:HistoryMongoTool",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "class:app/shared/clients/mongo_history_utils.py:HistoryMongoTool",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:clear_history",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:clear_history",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:save_chat_message",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:save_chat_message",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:update_message_item_names",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:update_message_item_names",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_recent_messages",
+   "type": "contains",
+   "direction": "forward",
+   "weight": 1.0
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_recent_messages",
+   "type": "exports",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/infra/milvus/VectorStore.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/import_/agent/nodes/node_bge_embedding.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/import_/agent/nodes/node_import_milvus.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/import_/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/query/agent/nodes/node_rerank.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/query/agent/nodes/node_rrf.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/query/agent/nodes/node_search_embedding.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/query/agent/nodes/node_search_embedding_hyde.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/process/query/agent/state.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/rag_eval/dataset.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/rag_eval/metrics.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/shared/clients/__init__.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/shared/clients/mongo_history_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/shared/config/embedding_config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/shared/config/milvus_config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/rag_eval/runner.py",
+   "target": "file:app/shared/config/reranker_config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/__init__.py",
+   "target": "file:app/shared/clients/milvus_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/__init__.py",
+   "target": "file:app/shared/clients/minio_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/__init__.py",
+   "target": "file:app/shared/clients/mongo_history_utils.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "file:app/shared/config/milvus_config.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/milvus_utils.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "file:app/shared/clients/mongo_history_utils.py",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "imports",
+   "direction": "forward",
+   "weight": 0.7
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/rag_eval/runner.py:insert_env_ready",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/rag_eval/runner.py:_query_chunk_rows_with_retry",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/rag_eval/dataset.py:build_import_chunks",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/rag_eval/dataset.py:build_batch_eval_cases",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/rag_eval/dataset.py:write_batch_eval_cases",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/process/import_/agent/nodes/node_item_name_recognition.py:node_item_name_recognition",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/process/import_/agent/nodes/node_bge_embedding.py:node_bge_embedding",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/process/import_/agent/nodes/node_import_milvus.py:node_import_milvus",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:insert_batch_eval_dataset",
+   "target": "function:app/process/import_/agent/state.py:create_default_state",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/process/query/agent/state.py:create_query_default_state",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/rag_eval/dataset.py:build_web_search_docs",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/process/query/agent/nodes/node_search_embedding.py:node_search_embedding",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/process/query/agent/nodes/node_search_embedding_hyde.py:node_search_embedding_hyde",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/process/query/agent/nodes/node_rrf.py:node_rrf",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/process/query/agent/nodes/node_rerank.py:node_rerank",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "target": "function:app/rag_eval/metrics.py:evaluate_query_state",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "target": "function:app/rag_eval/runner.py:_to_chinese_summary",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "target": "function:app/rag_eval/runner.py:_to_chinese_case_result",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/runner.py:batch_eval_ready",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/runner.py:milvus_ready",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/runner.py:run_query_eval_case",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/runner.py:summarize_eval_results",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/runner.py:save_batch_eval_report",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/rag_eval/runner.py:run_batch_eval",
+   "target": "function:app/rag_eval/dataset.py:load_batch_eval_cases",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/clients/mongo_history_utils.py:clear_history",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/clients/mongo_history_utils.py:save_chat_message",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/clients/mongo_history_utils.py:update_message_item_names",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/clients/mongo_history_utils.py:get_recent_messages",
+   "target": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  },
+  {
+   "source": "function:app/shared/clients/mongo_history_utils.py:get_history_mongo_tool",
+   "target": "class:app/shared/clients/mongo_history_utils.py:HistoryMongoTool",
+   "type": "calls",
+   "direction": "forward",
+   "weight": 0.8
+  }
+ ]
+}

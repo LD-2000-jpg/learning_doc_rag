@@ -1,0 +1,18 @@
+{
+  "nodes": [
+    {"id": "file:tests/12_sse/03_sse_data.py", "type": "file", "name": "03_sse_data.py", "filePath": "tests/12_sse/03_sse_data.py", "summary": "FastAPI SSE 推送示例：后台任务按会话将结果写入 asyncio.Queue，SSE 接口从队列中阻塞读取并以 text/event-stream 流式推送，收到 None 结束标记后停止。", "tags": ["sse", "fastapi", "异步队列", "示例", "test"], "complexity": "simple", "languageNotes": "使用 asyncio.Queue 替代列表加轮询，实现生产者-消费者模式；async generator 配合 StreamingResponse 输出 SSE 数据帧。"},
+    {"id": "function:tests/12_sse/03_sse_data.py:long_task", "type": "function", "name": "long_task", "filePath": "tests/12_sse/03_sse_data.py", "lineRange": [14, 26], "summary": "模拟耗时异步任务，为会话创建专属队列并每秒写入一条处理结果，最后写入 None 作为结束标记。", "tags": ["后台任务", "生产者", "异步队列"], "complexity": "simple"},
+    {"id": "function:tests/12_sse/03_sse_data.py:submit_task", "type": "function", "name": "submit_task", "filePath": "tests/12_sse/03_sse_data.py", "lineRange": [30, 33], "summary": "GET /submit/{session_id} 接口，通过 BackgroundTasks 启动 long_task 并立即返回任务已启动信息。", "tags": ["api-handler", "后台任务", "fastapi"], "complexity": "simple"},
+    {"id": "function:tests/12_sse/03_sse_data.py:stream_result", "type": "function", "name": "stream_result", "filePath": "tests/12_sse/03_sse_data.py", "lineRange": [37, 53], "summary": "GET /stream/{session_id} SSE 接口，内部生成器等待会话队列创建后循环取数据并以 data: 格式推送，遇结束标记退出。", "tags": ["api-handler", "sse", "流式响应", "消费者"], "complexity": "simple"},
+    {"id": "file:tests/12_sse/__init__.py", "type": "file", "name": "__init__.py", "filePath": "tests/12_sse/__init__.py", "summary": "空的包初始化文件，将 tests/12_sse 标记为 Python 包。", "tags": ["package-marker", "test", "python-package"], "complexity": "simple"},
+    {"id": "file:tests/__init__.py", "type": "file", "name": "__init__.py", "filePath": "tests/__init__.py", "summary": "空的包初始化文件，将 tests 目录标记为 Python 包。", "tags": ["package-marker", "test", "python-package"], "complexity": "simple"}
+  ],
+  "edges": [
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:long_task", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:submit_task", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:stream_result", "type": "contains", "direction": "forward", "weight": 1.0},
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:long_task", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:submit_task", "type": "exports", "direction": "forward", "weight": 0.8},
+    {"source": "file:tests/12_sse/03_sse_data.py", "target": "function:tests/12_sse/03_sse_data.py:stream_result", "type": "exports", "direction": "forward", "weight": 0.8}
+  ]
+}

@@ -1,0 +1,621 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 13,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 13,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/infra/config/providers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 54,
+      "classes": [
+        {
+          "name": "InfraConfig",
+          "startLine": 36,
+          "endLine": 44,
+          "methods": [],
+          "properties": [
+            "embedding_config",
+            "lm_config",
+            "mcp_config",
+            "milvus_config",
+            "mineru_config",
+            "minio_config",
+            "reranker_config",
+            "settings"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "InfraConfig",
+          "line": 35,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 8,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/infra/minio/ObjectStore.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 30,
+      "classes": [
+        {
+          "name": "MinioGateway",
+          "startLine": 6,
+          "endLine": 31,
+          "methods": [
+            "bucket_name",
+            "images_prefix",
+            "minio",
+            "build_image_url"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MinioGateway",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "minio",
+          "callee": "get_minio_client",
+          "lineNumber": 19
+        },
+        {
+          "caller": "build_image_url",
+          "callee": "logger.info",
+          "lineNumber": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/clients/minio_utils.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 97,
+      "nonEmptyLines": 84,
+      "functions": [
+        {
+          "name": "_create_minio_client",
+          "startLine": 18,
+          "endLine": 29,
+          "params": []
+        },
+        {
+          "name": "_set_bucket_policy",
+          "startLine": 33,
+          "endLine": 54,
+          "params": [
+            "bucket_name"
+          ]
+        },
+        {
+          "name": "_create_bucket_ready",
+          "startLine": 58,
+          "endLine": 73,
+          "params": [
+            "client"
+          ]
+        },
+        {
+          "name": "get_minio_client",
+          "startLine": 76,
+          "endLine": 97,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_create_minio_client",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "_set_bucket_policy",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "_create_bucket_ready",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "get_minio_client",
+          "line": 76,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_create_minio_client",
+          "callee": "Minio",
+          "lineNumber": 24
+        },
+        {
+          "caller": "_set_bucket_policy",
+          "callee": "json.dumps",
+          "lineNumber": 54
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "client.bucket_exists",
+          "lineNumber": 66
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "client.make_bucket",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "client.set_bucket_policy",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "_set_bucket_policy",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "logger.info",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_create_bucket_ready",
+          "callee": "logger.info",
+          "lineNumber": 73
+        },
+        {
+          "caller": "get_minio_client",
+          "callee": "logger.info",
+          "lineNumber": 90
+        },
+        {
+          "caller": "get_minio_client",
+          "callee": "_create_minio_client",
+          "lineNumber": 91
+        },
+        {
+          "caller": "get_minio_client",
+          "callee": "_create_bucket_ready",
+          "lineNumber": 92
+        },
+        {
+          "caller": "get_minio_client",
+          "callee": "logger.info",
+          "lineNumber": 94
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/config/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 26,
+      "metrics": {
+        "importCount": 7,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/config/bailian_mcp_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 19,
+      "classes": [
+        {
+          "name": "McpConfig",
+          "startLine": 10,
+          "endLine": 12,
+          "methods": [],
+          "properties": [
+            "mcp_base_url",
+            "api_key"
+          ]
+        },
+        {
+          "name": "McpConfig",
+          "startLine": 15,
+          "endLine": 19,
+          "methods": [
+            "__init__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "McpConfig",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "McpConfig",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "app/shared/config/common.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 72,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "env_str",
+          "startLine": 16,
+          "endLine": 28,
+          "params": [
+            "name",
+            "default"
+          ]
+        },
+        {
+          "name": "env_bool",
+          "startLine": 31,
+          "endLine": 51,
+          "params": [
+            "name",
+            "default"
+          ]
+        },
+        {
+          "name": "env_float",
+          "startLine": 54,
+          "endLine": 72,
+          "params": [
+            "name",
+            "default"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "env_str",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "env_bool",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "env_float",
+          "line": 54,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "env_str",
+          "callee": "os.getenv",
+          "lineNumber": 27
+        },
+        {
+          "caller": "env_bool",
+          "callee": "os.getenv",
+          "lineNumber": 42
+        },
+        {
+          "caller": "env_bool",
+          "callee": "value.strip().lower",
+          "lineNumber": 46
+        },
+        {
+          "caller": "env_bool",
+          "callee": "value.strip",
+          "lineNumber": 46
+        },
+        {
+          "caller": "env_float",
+          "callee": "os.getenv",
+          "lineNumber": 65
+        },
+        {
+          "caller": "env_float",
+          "callee": "float",
+          "lineNumber": 70
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/config/embedding_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 17,
+      "classes": [
+        {
+          "name": "EmbeddingConfig",
+          "startLine": 10,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "bge_m3_path",
+            "bge_m3",
+            "bge_device",
+            "bge_fp16"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "EmbeddingConfig",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/lm_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 19,
+      "classes": [
+        {
+          "name": "LLMConfig",
+          "startLine": 11,
+          "endLine": 16,
+          "methods": [],
+          "properties": [
+            "base_url",
+            "api_key",
+            "lv_model",
+            "llm_model",
+            "llm_temperature"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LLMConfig",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/milvus_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 17,
+      "classes": [
+        {
+          "name": "MilvusConfig",
+          "startLine": 10,
+          "endLine": 14,
+          "methods": [],
+          "properties": [
+            "milvus_url",
+            "chunks_collection",
+            "entity_name_collection",
+            "item_name_collection"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MilvusConfig",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/mineru_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 13,
+      "classes": [
+        {
+          "name": "MinerUConfig",
+          "startLine": 10,
+          "endLine": 12,
+          "methods": [],
+          "properties": [
+            "base_url",
+            "api_key"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MinerUConfig",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/minio_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 26,
+      "nonEmptyLines": 21,
+      "classes": [
+        {
+          "name": "MinIOConfig",
+          "startLine": 10,
+          "endLine": 16,
+          "methods": [],
+          "properties": [
+            "endpoint",
+            "access_key",
+            "secret_key",
+            "bucket_name",
+            "minio_img_dir",
+            "minio_secure"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "MinIOConfig",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/reranker_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 15,
+      "classes": [
+        {
+          "name": "RerankerConfig",
+          "startLine": 9,
+          "endLine": 12,
+          "methods": [],
+          "properties": [
+            "bge_reranker_large",
+            "bge_reranker_device",
+            "bge_reranker_fp16"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "RerankerConfig",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/config/settings_config.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 19,
+      "classes": [
+        {
+          "name": "AppSettings",
+          "startLine": 14,
+          "endLine": 23,
+          "methods": [],
+          "properties": [
+            "import_app_name",
+            "query_app_name",
+            "app_env",
+            "app_host",
+            "import_app_port",
+            "query_app_port",
+            "cors_origins"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "AppSettings",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    }
+  ]
+}

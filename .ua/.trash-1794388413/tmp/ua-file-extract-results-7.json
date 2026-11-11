@@ -1,0 +1,30 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 0,
+  "filesSkipped": [
+    "notes/day06_掌柜智库_项目介绍和搭建.txt",
+    "notes/day07_掌柜智库_导入架构和pdf处理.txt",
+    "notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+    "notes/day09_掌柜智库_继续图片处理节点.txt",
+    "notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+    "notes/day11_掌柜智库_数据入口和导入web模块.txt",
+    "notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+    "notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+    "notes/day14_掌柜智库_web实现和意图识别.txt",
+    "notes/day15_掌柜智库_意图识别和多路检索.txt",
+    "notes/day16_掌柜智库_数据重排和结果输出.txt"
+  ],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 0,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 0,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": []
+}

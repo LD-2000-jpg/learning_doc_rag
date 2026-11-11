@@ -1,0 +1,646 @@
+{
+ "nodes": [
+  {
+   "id": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "type": "document",
+   "name": "day06_掌柜智库_项目介绍和搭建.txt",
+   "filePath": "notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "summary": "第6天开发笔记：介绍掌柜智库的导入流程、三路检索流程（向量检索、HyDE 假设答案检索、联网 MCP 检索）与 Milvus 向量库设计，并讲解 uv 依赖管理、项目分层结构、日志工具与 node_log 装饰器、提示词加载等基础搭建。",
+   "tags": [
+    "documentation",
+    "项目搭建",
+    "项目结构",
+    "日志",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "type": "document",
+   "name": "day07_掌柜智库_导入架构和pdf处理.txt",
+   "filePath": "notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "summary": "第7天开发笔记：回顾导入流程并搭建 LangGraph 导入主图，分析 ImportGraphState 属性，注册 7 个导入节点并用条件边按文件类型（pdf/md）路由，同时说明文档级 item_name 集合的向量库设计。",
+   "tags": [
+    "documentation",
+    "langgraph",
+    "导入流程",
+    "状态图",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "type": "document",
+   "name": "day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "filePath": "notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "summary": "第8天开发笔记：详解 node_pdf_to_md 通过 MinerU API 申请上传、轮询解析结果并下载解压 Markdown 的实现，讲解 requests 用法，并开始设计 node_md_img 图片处理节点与 MinIO 文件服务器的部署使用。",
+   "tags": [
+    "documentation",
+    "pdf解析",
+    "mineru",
+    "minio",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "type": "document",
+   "name": "day09_掌柜智库_继续图片处理节点.txt",
+   "filePath": "notes/day09_掌柜智库_继续图片处理节点.txt",
+   "summary": "第9天开发笔记：继续实现 node_md_img，包括参数校验、用正则定位图片并截取上下文、调用 Qwen 视觉模型生成图片语义、上传 MinIO 并替换 Markdown 图片链接。",
+   "tags": [
+    "documentation",
+    "图片处理",
+    "视觉模型",
+    "minio",
+    "开发笔记"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "type": "document",
+   "name": "day10_掌柜智库_图片处理总结和文档切割.txt",
+   "filePath": "notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "summary": "第10天开发笔记：总结 node_md_img 图片处理全流程（上下文提取、视觉识别、上传替换、备份），并引入 node_document_split 文档智能切割节点的设计。",
+   "tags": [
+    "documentation",
+    "图片处理",
+    "文档切割",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "type": "document",
+   "name": "day11_掌柜智库_数据入口和导入web模块.txt",
+   "filePath": "notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "summary": "第11天开发笔记：总结文档切割四原则（语义优先、长度可控、边界清晰、可追溯），讲解 node_item_name_recognition 主体识别、BGE-M3 模型下载与加载、Milvus 部署及 MilvusGateway 客户端封装。",
+   "tags": [
+    "documentation",
+    "文档切割",
+    "主体识别",
+    "embedding",
+    "milvus"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "type": "document",
+   "name": "day12_掌柜智库_导入收尾和web模块集成.txt",
+   "filePath": "notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "summary": "第12天开发笔记：实现 node_bge_embedding 批量向量化与 node_import_milvus 先删后插入库，串联导入全流程测试，回顾 FastAPI 参数/响应/后台任务用法并实现导入 Web 接口。",
+   "tags": [
+    "documentation",
+    "向量化",
+    "milvus",
+    "fastapi",
+    "开发笔记"
+   ],
+   "complexity": "moderate"
+  },
+  {
+   "id": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "type": "document",
+   "name": "day13_掌柜智库_查询模块图定义和web实现.txt",
+   "filePath": "notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "summary": "第13天开发笔记：定义查询模块的 state、7 对节点与业务函数及查询主图，讲解 SSE 推送机制与 task_utils/sse_utils 的队列设计，并实现查询 Web 接口的流式与非流式调用。",
+   "tags": [
+    "documentation",
+    "查询流程",
+    "sse",
+    "langgraph",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "type": "document",
+   "name": "day14_掌柜智库_web实现和意图识别.txt",
+   "filePath": "notes/day14_掌柜智库_web实现和意图识别.txt",
+   "summary": "第14天开发笔记：完善查询 Web 模块的 SSE 问题修复（队列创建、final 事件过早关闭、error 事件处理），引入 MongoDB 聊天历史与 node_item_name_confirm 意图识别节点设计。",
+   "tags": [
+    "documentation",
+    "sse",
+    "意图识别",
+    "mongodb",
+    "开发笔记"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "type": "document",
+   "name": "day15_掌柜智库_意图识别和多路检索.txt",
+   "filePath": "notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "summary": "第15天开发笔记：实现历史聊天记录接口与 node_item_name_confirm（问题重写、item_name 提取与 Milvus 混合检索置信度判定），并讲解向量检索、HyDE 检索与联网 MCP 检索三路召回节点。",
+   "tags": [
+    "documentation",
+    "意图识别",
+    "多路检索",
+    "mcp",
+    "hyde"
+   ],
+   "complexity": "complex"
+  },
+  {
+   "id": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "type": "document",
+   "name": "day16_掌柜智库_数据重排和结果输出.txt",
+   "filePath": "notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "summary": "第16天开发笔记：讲解 node_rrf 多路结果加权 RRF 融合、node_rerank 使用 BGE Reranker 打分与动态断崖截断，以及 node_answer_output 最终答案生成输出。",
+   "tags": [
+    "documentation",
+    "rrf",
+    "rerank",
+    "答案生成",
+    "开发笔记"
+   ],
+   "complexity": "moderate"
+  }
+ ],
+ "edges": [
+  {
+   "source": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "target": "file:app/shared/runtime/logger.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "target": "file:app/shared/runtime/load_prompt.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "target": "file:app/shared/config/milvus_config.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "target": "file:app/infra/config/providers.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "target": "file:app/process/import_/agent/main_graph.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "target": "file:app/process/import_/agent/state.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "target": "file:app/process/import_/agent/nodes/node_entry.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "target": "file:app/process/import_/agent/nodes/node_pdf_to_md.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "file:app/process/import_/agent/nodes/node_pdf_to_md.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "file:app/rag/import_/pdf_parse_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "file:app/rag/import_/config.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "file:app/process/import_/agent/nodes/node_md_img.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "file:app/shared/clients/minio_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "target": "file:app/process/import_/agent/nodes/node_md_img.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "target": "file:app/rag/import_/enrich_markdown_images.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "target": "file:app/infra/minio/ObjectStore.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "target": "file:app/infra/model/model_providers.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "target": "file:app/process/import_/agent/nodes/node_md_img.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "target": "file:app/process/import_/agent/nodes/node_document_split.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "target": "file:app/rag/import_/split_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/process/import_/agent/nodes/node_document_split.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/process/import_/agent/nodes/node_item_name_recognition.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/rag/import_/item_name_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/shared/tool/download_bgem3.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/shared/model/embedding_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/infra/model/model_providers.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/shared/clients/milvus_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "file:app/infra/milvus/VectorStore.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "target": "file:app/process/import_/agent/nodes/node_bge_embedding.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "target": "file:app/process/import_/agent/nodes/node_import_milvus.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "target": "file:app/process/import_/agent/main_graph.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "target": "file:app/api/http/import_server.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "file:app/process/query/agent/state.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "file:app/process/query/agent/main_graph.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "file:app/shared/utils/task_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "file:app/shared/utils/sse_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "file:app/api/http/query_server.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "file:app/api/http/query_server.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "file:app/shared/utils/sse_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "file:app/shared/utils/task_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "file:app/process/query/agent/nodes/node_item_name_confirm.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "file:app/shared/clients/mongo_history_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/process/query/agent/nodes/node_item_name_confirm.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/rag/query/item_name_confirm_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/shared/clients/mongo_history_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/process/query/agent/nodes/node_search_embedding.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/process/query/agent/nodes/node_search_embedding_hyde.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/process/query/agent/nodes/node_web_search_mcp.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/rag/query/web_search_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "file:app/rag/query/hyde_search_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/process/query/agent/nodes/node_rrf.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/rag/query/rrf_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/process/query/agent/nodes/node_rerank.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/rag/query/rerank_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/shared/model/reranker_utils.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/shared/tool/download_reranker.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/process/query/agent/nodes/node_answer_output.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "target": "file:app/rag/query/answer_service.py",
+   "type": "documents",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day06_掌柜智库_项目介绍和搭建.txt",
+   "target": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day07_掌柜智库_导入架构和pdf处理.txt",
+   "target": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day08_掌柜智库_完善pdf和图片处理节点.txt",
+   "target": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day09_掌柜智库_继续图片处理节点.txt",
+   "target": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day10_掌柜智库_图片处理总结和文档切割.txt",
+   "target": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day11_掌柜智库_数据入口和导入web模块.txt",
+   "target": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day12_掌柜智库_导入收尾和web模块集成.txt",
+   "target": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day13_掌柜智库_查询模块图定义和web实现.txt",
+   "target": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day14_掌柜智库_web实现和意图识别.txt",
+   "target": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  },
+  {
+   "source": "document:notes/day15_掌柜智库_意图识别和多路检索.txt",
+   "target": "document:notes/day16_掌柜智库_数据重排和结果输出.txt",
+   "type": "related",
+   "direction": "forward",
+   "weight": 0.5
+  }
+ ]
+}

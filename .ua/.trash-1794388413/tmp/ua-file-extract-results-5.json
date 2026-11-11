@@ -1,0 +1,430 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 5,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 5,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/infra/model/model_providers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 28,
+      "classes": [
+        {
+          "name": "ModelProvider",
+          "startLine": 7,
+          "endLine": 29,
+          "methods": [
+            "llm_model",
+            "vision_model",
+            "create_embeddings",
+            "compute_scores",
+            "compute_token_number"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ModelProvider",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "llm_model",
+          "callee": "get_llm_client",
+          "lineNumber": 10
+        },
+        {
+          "caller": "vision_model",
+          "callee": "get_llm_client",
+          "lineNumber": 13
+        },
+        {
+          "caller": "create_embeddings",
+          "callee": "generate_embeddings",
+          "lineNumber": 16
+        },
+        {
+          "caller": "compute_scores",
+          "callee": "get_reranker_model",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compute_scores",
+          "callee": "reranker_model.compute_score",
+          "lineNumber": 20
+        },
+        {
+          "caller": "compute_token_number",
+          "callee": "get_reranker_model",
+          "lineNumber": 23
+        },
+        {
+          "caller": "compute_token_number",
+          "callee": "tokenizer.encode",
+          "lineNumber": 27
+        },
+        {
+          "caller": "compute_token_number",
+          "callee": "len",
+          "lineNumber": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/shared/model/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 12,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/model/embedding_utils.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 127,
+      "nonEmptyLines": 110,
+      "functions": [
+        {
+          "name": "get_bge_m3_ef",
+          "startLine": 14,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "generate_embeddings",
+          "startLine": 57,
+          "endLine": 125,
+          "params": [
+            "texts"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_bge_m3_ef",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "generate_embeddings",
+          "line": 57,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "logger.debug",
+          "lineNumber": 22
+        },
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "logger.info",
+          "lineNumber": 32
+        },
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "BGEM3EmbeddingFunction",
+          "lineNumber": 44
+        },
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "logger.success",
+          "lineNumber": 50
+        },
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "logger.error",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_bge_m3_ef",
+          "callee": "str",
+          "lineNumber": 53
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "isinstance",
+          "lineNumber": 65
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "len",
+          "lineNumber": 65
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.warning",
+          "lineNumber": 66
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "ValueError",
+          "lineNumber": 67
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "any",
+          "lineNumber": 68
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "isinstance",
+          "lineNumber": 68
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.warning",
+          "lineNumber": 69
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "ValueError",
+          "lineNumber": 70
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.info",
+          "lineNumber": 72
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "len",
+          "lineNumber": 72
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "get_bge_m3_ef",
+          "lineNumber": 75
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "model.encode_documents",
+          "lineNumber": 80
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.debug",
+          "lineNumber": 81
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "len",
+          "lineNumber": 81
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "range",
+          "lineNumber": 96
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "len",
+          "lineNumber": 96
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "embeddings[\"sparse\"].indices[\n                #  1 0 : 2 3\n                embeddings[\"sparse\"].indptr[i]:embeddings[\"sparse\"].indptr[i + 1]\n            ].tolist",
+          "lineNumber": 98
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "embeddings[\"sparse\"].data[\n                embeddings[\"sparse\"].indptr[i]:embeddings[\"sparse\"].indptr[i + 1]\n            ].tolist",
+          "lineNumber": 103
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "zip",
+          "lineNumber": 107
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "processed_sparse.append",
+          "lineNumber": 108
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "emb.tolist",
+          "lineNumber": 113
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.success",
+          "lineNumber": 120
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "len",
+          "lineNumber": 120
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "logger.error",
+          "lineNumber": 124
+        },
+        {
+          "caller": "generate_embeddings",
+          "callee": "str",
+          "lineNumber": 124
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/model/lm_utils.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 88,
+      "nonEmptyLines": 73,
+      "functions": [
+        {
+          "name": "get_llm_client",
+          "startLine": 29,
+          "endLine": 87,
+          "params": [
+            "model",
+            "json_mode"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_llm_client",
+          "line": 29,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_llm_client",
+          "callee": "logger.debug",
+          "lineNumber": 48
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "ValueError",
+          "lineNumber": 53
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "ValueError",
+          "lineNumber": 55
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "logger.info",
+          "lineNumber": 56
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "logger.debug",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "ChatOpenAI",
+          "lineNumber": 72
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "Exception",
+          "lineNumber": 81
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "str",
+          "lineNumber": 81
+        },
+        {
+          "caller": "get_llm_client",
+          "callee": "logger.info",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/shared/model/reranker_utils.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "get_reranker_model",
+          "startLine": 12,
+          "endLine": 28,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "get_reranker_model",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get_reranker_model",
+          "callee": "logger.info",
+          "lineNumber": 21
+        },
+        {
+          "caller": "get_reranker_model",
+          "callee": "FlagReranker",
+          "lineNumber": 22
+        },
+        {
+          "caller": "get_reranker_model",
+          "callee": "logger.success",
+          "lineNumber": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    }
+  ]
+}

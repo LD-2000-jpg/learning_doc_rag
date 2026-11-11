@@ -1,0 +1,47 @@
+[
+ {
+  "id": "layer:api",
+  "name": "API 接入层",
+  "description": "基于 FastAPI 的导入/查询 HTTP 服务（含 SSE 流式输出）、Pydantic 请求/响应模型，以及前端 chat.html / import.html 页面"
+ },
+ {
+  "id": "layer:workflow",
+  "name": "LangGraph 流程编排层",
+  "description": "导入与查询两条 LangGraph 主图、State 定义及各节点（PDF 转 MD、图片处理、切分、向量化、主体识别、多路检索、RRF、重排、答案输出）"
+ },
+ {
+  "id": "layer:service",
+  "name": "RAG 业务服务层",
+  "description": "导入与查询的核心业务逻辑实现（PDF 解析、Markdown 图片增强、文档切分、BGE 向量化、Milvus 入库、HyDE/Web 检索、重排与答案生成）及其 Prompt 模板"
+ },
+ {
+  "id": "layer:infrastructure",
+  "name": "基础设施网关层",
+  "description": "封装 Milvus VectorStore、MinIO ObjectStore、配置与模型 provider 的基础设施适配层"
+ },
+ {
+  "id": "layer:shared",
+  "name": "共享基础层",
+  "description": "被各层复用的客户端（Milvus/MinIO/MongoDB）、配置项、模型加载工具、日志与 Prompt 加载器、模型下载工具及通用工具函数"
+ },
+ {
+  "id": "layer:rag-eval",
+  "name": "RAG 评估层",
+  "description": "RAG 问答效果评估模块，包含数据集、评估指标、运行器与测试器"
+ },
+ {
+  "id": "layer:test",
+  "name": "测试与学习脚本",
+  "description": "tests/ 下的功能验证与学习脚本，覆盖日志、Prompt 加载、导入/查询图调用、FastAPI 与 SSE 示例"
+ },
+ {
+  "id": "layer:documentation",
+  "name": "文档与开发笔记",
+  "description": "day06–day16 的掌柜智库开发笔记及 RAG 评估模块说明文档"
+ },
+ {
+  "id": "layer:config",
+  "name": "项目配置",
+  "description": "项目级依赖与构建配置（pyproject.toml）、环境变量模板（.env.example）及 app 根包"
+ }
+]

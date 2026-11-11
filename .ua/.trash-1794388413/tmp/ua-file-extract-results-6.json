@@ -1,0 +1,178 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "filesUnreadable": [],
+  "analysisOutcomes": {
+    "structure": {
+      "succeeded": 3,
+      "failed": 0
+    },
+    "callGraph": {
+      "succeeded": 3,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "results": [
+    {
+      "path": "app/rag_eval/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 11,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "app/rag_eval/tester.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 49,
+      "classes": [
+        {
+          "name": "RagEvalTester",
+          "startLine": 18,
+          "endLine": 64,
+          "methods": [
+            "run_insert_test_data",
+            "run_eval"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RagEvalTester",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run_insert_test_data",
+          "callee": "insert_batch_eval_dataset",
+          "lineNumber": 46
+        },
+        {
+          "caller": "run_insert_test_data",
+          "callee": "close_mongo_client",
+          "lineNumber": 48
+        },
+        {
+          "caller": "run_eval",
+          "callee": "run_batch_eval",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run_eval",
+          "callee": "close_mongo_client",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "tests/test_rag_eval_tester.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 41,
+      "functions": [
+        {
+          "name": "run_insert_test_data",
+          "startLine": 20,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "run_eval",
+          "startLine": 30,
+          "endLine": 40,
+          "params": []
+        },
+        {
+          "name": "demo",
+          "startLine": 43,
+          "endLine": 53,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "run_insert_test_data",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "run_eval",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "demo",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run_insert_test_data",
+          "callee": "RagEvalTester",
+          "lineNumber": 26
+        },
+        {
+          "caller": "run_insert_test_data",
+          "callee": "tester.run_insert_test_data",
+          "lineNumber": 27
+        },
+        {
+          "caller": "run_eval",
+          "callee": "RagEvalTester",
+          "lineNumber": 39
+        },
+        {
+          "caller": "run_eval",
+          "callee": "tester.run_eval",
+          "lineNumber": 40
+        },
+        {
+          "caller": "demo",
+          "callee": "run_insert_test_data",
+          "lineNumber": 49
+        },
+        {
+          "caller": "demo",
+          "callee": "print",
+          "lineNumber": 50
+        },
+        {
+          "caller": "demo",
+          "callee": "run_eval",
+          "lineNumber": 52
+        },
+        {
+          "caller": "demo",
+          "callee": "print",
+          "lineNumber": 53
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

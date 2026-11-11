@@ -165,3 +165,7 @@ cython_debug/
 doc/
 logs/
 output/
+# Understand-Anything scratch files
+.ua/.trash-*/
+.ua/intermediate/
+.ua/tmp/

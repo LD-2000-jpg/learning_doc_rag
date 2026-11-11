@@ -21,7 +21,7 @@
     ],
     "description": "基于 LangGraph 的企业级 RAG 知识库系统，支持文档导入、向量检索和智能问答",
     "analyzedAt": "2026-11-11T09:12:17.710Z",
-    "gitCommitHash": "no-git-1794386627"
+    "gitCommitHash": "539341cd6f58e956a1181641c45b4b93eb8de1d4"
   },
   "nodes": [
     {
